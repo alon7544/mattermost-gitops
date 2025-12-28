@@ -1,23 +1,21 @@
-# הגדרות בסיס נתונים - הפעלת PostgreSQL פנימי
-mysql:
+# ביטול מסד נתונים חיצוני
+externalDB:
   enabled: false
 
+# הגדרת PostgreSQL פנימי - שים לב למבנה השדות!
 postgresql:
   enabled: true
   auth:
     database: mattermost
     username: mmuser
     password: password123
+  persistence:
+    enabled: false  # ביטול אחסון לטובת המהירות ב-Minikube
 
-# ביטול בסיס נתונים חיצוני (הסיבה לשגיאה הקודמת)
-externalDB:
-  enabled: false
-
-# הגדרות השרת
+# הגדרות המטרמוסט
 config:
   SiteURL: "http://localhost:8065"
 
-# הגדרות Ingress לגישה מהדפדפן
 ingress:
   enabled: true
   ingressClassName: nginx
@@ -25,9 +23,3 @@ ingress:
     - host: mattermost.local
       paths:
         - path: /
-
-# הגדרות משאבים (אופציונלי - כדי שלא יכביד על Minikube)
-resources:
-  requests:
-    cpu: "250m"
-    memory: "512Mi"
