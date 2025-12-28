@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://helm.mattermost.com'
     chart: mattermost-team-edition
-    targetRevision: 6.6.1
+    targetRevision: 6.6.1  # גרסת ה-Chart (חייב להיות מספר)
     helm:
       valueFiles:
         - https://raw.githubusercontent.com/alon7544/mattermost-gitops/main/mattermost-values.yaml
