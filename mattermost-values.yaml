@@ -1,25 +1,18 @@
-# ביטול מסד נתונים חיצוני
-externalDB:
-  enabled: false
-
-# הגדרת PostgreSQL פנימי - שים לב למבנה השדות!
+# ערוך את mattermost-values.yaml
 postgresql:
   enabled: true
-  auth:
-    database: mattermost
-    username: mmuser
-    password: password123
+  # בגרסה הזו של ה-Chart, אלו השדות הנכונים:
+  postgresqlUsername: mmuser
+  postgresqlPassword: password123
+  postgresqlDatabase: mattermost
   persistence:
-    enabled: false  # ביטול אחסון לטובת המהירות ב-Minikube
+    enabled: false
+  primary:
+    persistence:
+      enabled: false
 
-# הגדרות המטרמוסט
-config:
-  SiteURL: "http://localhost:8065"
-
-ingress:
-  enabled: true
-  ingressClassName: nginx
-  hosts:
-    - host: mattermost.local
-      paths:
-        - path: /
+# ביטול מסדי נתונים אחרים
+mysql:
+  enabled: false
+externalDB:
+  enabled: false
