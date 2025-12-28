@@ -1,0 +1,24 @@
+mysql:
+  enabled: false
+postgresql:
+  enabled: false
+
+externalDB:
+  enabled: true
+  type: postgres
+  host: postgres-db-postgresql.mattermost.svc.cluster.local
+  port: 5432
+  user: mmuser
+  password: password123
+  database: mattermost
+
+extraEnvVars:
+  - name: MM_SQLSETTINGS_DATASOURCE
+    value: "postgres://mmuser:password123@postgres-db-postgresql.mattermost.svc.cluster.local:5432/mattermost?sslmode=disable&connect_timeout=10"
+
+ingress:
+  enabled: true
+  hosts:
+    - host: mattermost.local
+      paths:
+        - path: /
