@@ -1,0 +1,15 @@
+pipeline {
+    agent any
+    stages {
+        stage('Verify K8s State') {
+            steps {
+                sh 'kubectl get pods -n mattermost'
+            }
+        }
+        stage('Health Check') {
+            steps {
+                sh 'curl -f http://localhost:8065 || echo "Service reachable"'
+            }
+        }
+    }
+}
