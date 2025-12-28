@@ -8,10 +8,10 @@ spec:
   source:
     repoURL: 'https://helm.mattermost.com'
     chart: mattermost-team-edition
-    targetRevision: 6.6.1  # גרסת ה-Chart (חייב להיות מספר)
+    targetRevision: 6.6.1
     helm:
       valueFiles:
-        - https://raw.githubusercontent.com/alon7544/mattermost-gitops/main/mattermost-values.yaml
+        - https://raw.githubusercontent.com/alon7544/mattermost-gitops/main/mattermost-values.yaml?v=1
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mattermost
