@@ -1,23 +1,20 @@
 mysql:
   enabled: false
+
 postgresql:
-  enabled: false
-
-externalDB:
   enabled: true
-  type: postgres
-  host: postgres-db-postgresql.mattermost.svc.cluster.local
-  port: 5432
-  user: mmuser
-  password: password123
-  database: mattermost
+  auth:
+    database: mattermost
+    username: mmuser
+    password: password123
 
-extraEnvVars:
-  - name: MM_SQLSETTINGS_DATASOURCE
-    value: "postgres://mmuser:password123@postgres-db-postgresql.mattermost.svc.cluster.local:5432/mattermost?sslmode=disable&connect_timeout=10"
+# שים לב - ביטלנו את ה-externalDB כדי שה-Chart יקים אחד בעצמו
+externalDB:
+  enabled: false
 
 ingress:
   enabled: true
+  ingressClassName: nginx
   hosts:
     - host: mattermost.local
       paths:
