@@ -1,18 +1,11 @@
-# ערוך את mattermost-values.yaml
 postgresql:
-  enabled: true
-  # בגרסה הזו של ה-Chart, אלו השדות הנכונים:
-  postgresqlUsername: mmuser
-  postgresqlPassword: password123
-  postgresqlDatabase: mattermost
-  persistence:
-    enabled: false
-  primary:
-    persistence:
-      enabled: false
+  enabled: false # ביטלנו את ה-DB של ה-Chart
 
-# ביטול מסדי נתונים אחרים
-mysql:
-  enabled: false
 externalDB:
-  enabled: false
+  enabled: true
+  type: postgres
+  host: postgres-db-svc.mattermost.svc.cluster.local # הכתובת של ה-Service שיצרנו
+  port: 5432
+  user: mmuser
+  password: password123
+  database: mattermost

@@ -1,0 +1,23 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: mattermost-production
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/alon7544/mattermost-gitops.git' # ה-Repo שלך
+    targetRevision: HEAD
+    path: .
+    helm:
+      valueFiles:
+        - mattermost-values.yaml # שימוש בקובץ מה-Git
+  destination:
+    server: 'https://kubernetes.default.svc'
+    namespace: mattermost
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
