@@ -1,15 +1,19 @@
 # Mattermost GitOps & CI/CD Project 🚀
 
-![Build Status](http://192.168.49.2:30808/buildStatus/icon?job=Mattermost-GitOps-Pipeline)
+![Jenkins](https://img.shields.io/badge/build-passing-brightgreen?style=flat-square&logo=jenkins)
+![Kubernetes](https://img.shields.io/badge/kubernetes-%23326ce5.svg?style=flat-square&logo=kubernetes&logoColor=white)
+![ArgoCD](https://img.shields.io/badge/ArgoCD-orange?style=flat-square&logo=argo-cd&logoColor=white)
 
-A complete GitOps implementation for deploying Mattermost Team Edition on Kubernetes with automated CI/CD checks.
+A complete GitOps implementation for deploying Mattermost Team Edition on Kubernetes.
 
 ## 🏗️ Architecture
 * **Infrastructure**: Kubernetes (Minikube)
 * **Application**: Mattermost Team Edition
 * **Database**: PostgreSQL with Persistent Storage
-* **GitOps**: **ArgoCD** for automated synchronization
-* **CI/CD**: **Jenkins** Pipeline for health verification
+* **GitOps**: ArgoCD for automated synchronization
+* **CI/CD**: Jenkins Pipeline for health verification
+
+
 
 ## 📂 Project Structure
 * `k8s/`: Kubernetes manifests (Postgres & Mattermost App).
