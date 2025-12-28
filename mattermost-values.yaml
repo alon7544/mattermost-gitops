@@ -1,10 +1,11 @@
 postgresql:
-  enabled: false # ביטלנו את ה-DB של ה-Chart
+  enabled: false # אנחנו משתמשים בפוד העצמאי שהקמנו
 
 externalDB:
   enabled: true
   type: postgres
-  host: postgres-db-svc.mattermost.svc.cluster.local # הכתובת של ה-Service שיצרנו
+  # השם של ה-Service שיצרנו קודם (או ניצור עכשיו)
+  host: postgres-db-svc.mattermost.svc.cluster.local 
   port: 5432
   user: mmuser
   password: password123
