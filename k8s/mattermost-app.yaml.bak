@@ -6,10 +6,9 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/alon7544/mattermost-gitops.git'
-    path: k8s  # אנחנו אומרים לו לחפש הגדרות בתיקייה הזו
-    targetRevision: HEAD
-    # הסרנו את ה-Helm Source החיצוני כי ה-DNS שלך בעייתי
+    repoURL: 'https://helm.mattermost.com'
+    chart: mattermost-team-edition
+    targetRevision: 6.6.1
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mattermost
