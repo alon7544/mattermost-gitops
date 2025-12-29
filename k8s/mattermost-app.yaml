@@ -14,14 +14,11 @@ spec:
         config:
           SqlSettings:
             DriverName: postgres
+            DataSource: "postgres://mmuser:mmuser_password@mattermost-db-postgresql.mattermost:5432/mattermost?sslmode=disable"
         mysql:
           enabled: false
         postgresql:
-          enabled: true
-          auth:
-            database: mattermost
-            username: mmuser
-            password: mmuser_password
+          enabled: false
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mattermost
@@ -29,5 +26,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
