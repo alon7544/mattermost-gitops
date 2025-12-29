@@ -11,13 +11,16 @@ spec:
     targetRevision: '>=0.0.0'
     helm:
       values: |
-        mysql:
-          enabled: false
+        database:
+          type: postgresql
         postgresql:
           enabled: true
-          postgresqlUsername: mmuser
-          postgresqlPassword: mmuser_password
-          postgresqlDatabase: mattermost
+          auth:
+            username: mmuser
+            password: mmuser_password
+            database: mattermost
+        mysql:
+          enabled: false
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mattermost
