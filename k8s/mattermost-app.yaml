@@ -8,7 +8,7 @@ spec:
   source:
     repoURL: 'https://helm.mattermost.com'
     chart: mattermost-team-edition
-    targetRevision: HEAD
+    targetRevision: '>=0.0.0'
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mattermost
