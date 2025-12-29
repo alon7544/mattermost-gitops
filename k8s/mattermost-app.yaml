@@ -15,6 +15,9 @@ spec:
           SqlSettings:
             DriverName: postgres
             DataSource: "postgres://mmuser:mmuser_password@mattermost-db-postgresql.mattermost:5432/mattermost?sslmode=disable"
+        initContainers:
+          waitForDb:
+            enabled: false
         mysql:
           enabled: false
         postgresql:
