@@ -9,6 +9,15 @@ spec:
     repoURL: 'https://helm.mattermost.com'
     chart: mattermost-team-edition
     targetRevision: '>=0.0.0'
+    helm:
+      values: |
+        mysql:
+          enabled: false
+        postgresql:
+          enabled: true
+          postgresqlUsername: mmuser
+          postgresqlPassword: mmuser_password
+          postgresqlDatabase: mattermost
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mattermost
