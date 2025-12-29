@@ -7,10 +7,12 @@ spec:
   project: default
   source:
     repoURL: https://github.com/alon7544/mattermost-gitops
-    targetRevision: 9.1.1
+    targetRevision: main
     path: k8s
     helm:
       values: |
+        image:
+          tag: 9.1.1
         mysql:
           enabled: false
         externalDB:
