@@ -7,7 +7,7 @@ spec:
   project: default
   source:
     repoURL: https://github.com/alon7544/mattermost-gitops
-    targetRevision: HEAD
+    targetRevision: 9.1.1
     path: k8s
     helm:
       values: |
