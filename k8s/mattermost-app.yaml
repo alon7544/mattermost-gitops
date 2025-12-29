@@ -6,12 +6,13 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://helm.mattermost.com
-    chart: mattermost-team-edition
-    targetRevision: 1.2.0
+    repoURL: https://github.com/alon7544/mattermost-gitops
+    targetRevision: main
+    path: k8s
     helm:
       values: |
         image:
+          repository: mattermost/mattermost-team-edition
           tag: 9.1.1
         mysql:
           enabled: false
