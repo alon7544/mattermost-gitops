@@ -9,6 +9,14 @@ spec:
     repoURL: 'https://helm.mattermost.com'
     chart: mattermost-team-edition
     targetRevision: 6.6.1
+    helm:
+      values: |
+        mysql:
+          enabled: false
+        config:
+          SqlSettings:
+            DriverName: postgres
+            DataSource: "postgres://mmuser:mmuser_password@postgres-db.mattermost.svc.cluster.local:5432/mattermost?sslmode=disable&connect_timeout=10"
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mattermost
@@ -16,5 +24,3 @@ spec:
     automated:
       prune: true
       selfHeal: true
-    syncOptions:
-      - CreateNamespace=true
