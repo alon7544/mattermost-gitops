@@ -7,13 +7,13 @@ spec:
   project: default
   source:
     repoURL: https://github.com/alon7544/mattermost-gitops
-    targetRevision: main
+    targetRevision: HEAD
     path: k8s
     helm:
+      parameters:
+        - name: "image.tag"
+          value: "9.1.1"
       values: |
-        image:
-          repository: mattermost/mattermost-team-edition
-          tag: 9.1.1
         mysql:
           enabled: false
         externalDB:
