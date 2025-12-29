@@ -6,25 +6,15 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/alon7544/mattermost-gitops
-    targetRevision: main
-    path: k8s
-    helm:
-      values: |
-        mysql:
-          enabled: false
-        externalDB:
-          enabled: true
-          type: postgres
-        extraEnvVars:
-          - name: MM_SQLSETTINGS_DRIVERNAME
-            value: postgres
-          - name: MM_SQLSETTINGS_DATASOURCE
-            value: "postgres://mmuser:mmuser_password@postgres-db-svc:5432/mattermost?sslmode=disable"
+    repoURL: 'https://helm.mattermost.com'
+    chart: mattermost-team-edition
+    targetRevision: 0.2.2
   destination:
-    server: https://kubernetes.default.svc
+    server: 'https://kubernetes.default.svc'
     namespace: mattermost
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
