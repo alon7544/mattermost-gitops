@@ -13,10 +13,6 @@ spec:
       values: |
         image:
           tag: 9.1.1
-        image:
-          tag: 9.1.1
-        image:
-          tag: 9.1.1
         mysql:
           enabled: false
         externalDB:
