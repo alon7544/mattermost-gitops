@@ -6,22 +6,22 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: 'https://helm.mattermost.com'
-    chart: mattermost-team-edition
-    targetRevision: '>=0.0.0'
+    repoURL: 'https://github.com/alon7544/mattermost-gitops.git'
+    path: k8s
+    targetRevision: HEAD
     helm:
       values: |
         config:
           SqlSettings:
             DriverName: "postgres"
             DataSource: "postgres://mmuser:mmuser_password@mattermost-db-postgresql.mattermost:5432/mattermost?sslmode=disable"
-        initContainers:
-          waitForDb:
-            enabled: false
         mysql:
           enabled: false
         postgresql:
           enabled: false
+        initContainers:
+          waitForDb:
+            enabled: false
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mattermost
