@@ -13,14 +13,11 @@ spec:
       values: |
         config:
           SqlSettings:
-            DriverName: postgres
+            DriverName: "postgres"
             DataSource: "postgres://mmuser:mmuser_password@mattermost-db-postgresql.mattermost:5432/mattermost?sslmode=disable"
-        # הזרקה ישירה של הגדרות ה-DB כמשתני סביבה
-        extraEnv:
-          - name: MM_SQLSETTINGS_DRIVERNAME
-            value: "postgres"
-          - name: MM_SQLSETTINGS_DATASOURCE
-            value: "postgres://mmuser:mmuser_password@mattermost-db-postgresql.mattermost:5432/mattermost?sslmode=disable"
+        initContainers:
+          waitForDb:
+            enabled: false
         mysql:
           enabled: false
         postgresql:
@@ -32,3 +29,5 @@ spec:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
