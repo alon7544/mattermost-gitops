@@ -5,23 +5,21 @@ metadata:
   namespace: argocd
 spec:
   project: default
-  source:
-    repoURL: 'https://helm.mattermost.com'
-    chart: mattermost-team-edition
-    targetRevision: 6.6.1 # גרסה יציבה וספציפית
-    helm:
-      values: |
-        config:
-          SqlSettings:
-            DriverName: "postgres"
-            DataSource: "postgres://mmuser:mmuser_password@mattermost-db-postgresql.mattermost:5432/mattermost?sslmode=disable"
-        mysql:
-          enabled: false
-        postgresql:
-          enabled: false
-        initContainers:
-          waitForDb:
-            enabled: false
+  sources:
+    # מקור 1: ה-Chart הרשמי
+    - repoURL: 'https://helm.mattermost.com'
+      chart: mattermost-team-edition
+      targetRevision: 6.6.1
+      helm:
+        # כאן אנחנו אומרים לו לקחת את ה-Values מהמקור השני (ה-Git שלך)
+        valueFiles:
+          - $values/k8s/mattermost-values.yaml
+    
+    # מקור 2: ה-Repo שלך ב-GitHub שבו נמצאים ה-Values וה-DB
+    - repoURL: 'https://github.com/alon7544/mattermost-gitops.git'
+      targetRevision: HEAD
+      ref: values # כינוי למקור הזה לצורך שימוש ב-valueFiles למעלה
+
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: mattermost
