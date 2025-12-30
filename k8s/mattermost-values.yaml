@@ -1,12 +1,23 @@
+mysql:
+  enabled: false
 postgresql:
-  enabled: false # אנחנו משתמשים בפוד העצמאי שהקמנו
+  enabled: false
 
-externalDB:
-  enabled: true
-  type: postgres
-  # השם של ה-Service שיצרנו קודם (או ניצור עכשיו)
-  host: postgres-db-svc.mattermost.svc.cluster.local 
-  port: 5432
-  user: mmuser
-  password: password123
-  database: mattermost
+extraEnvVars:
+  - name: MM_SQLSETTINGS_DRIVERNAME
+    value: "postgres"
+  - name: MM_SQLSETTINGS_DATASOURCE
+    # שים לב לשם ה-DNS הפנימי שמתאים ל-Service ב-Manifest
+    value: "postgres://mmuser:mmuser_password@mattermost-db-postgresql.mattermost:5432/mattermost?sslmode=disable"
+  - name: MM_CONFIG
+    value: "{}"
+
+initContainers: []
+
+# זה החלק שמונע את הקריסה שראית ב-Describe
+readinessProbe:
+  initialDelaySeconds: 60
+  periodSeconds: 15
+livenessProbe:
+  initialDelaySeconds: 300 
+  periodSeconds: 30
